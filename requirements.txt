@@ -1,7 +1,10 @@
 flask
 flask-cors
 langchain==0.1.20
-openai==0.28.0
 chromadb==0.4.24
 python-dotenv
 gdown
+google-generativeai
+langchain-google-genai
+langchain-community
+
