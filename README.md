@@ -24,6 +24,15 @@ agentapp\Scripts\activate
 ```bash
 # creating a file name template.py
 python template.py
+
+# If want to add one more file just write in template.py and run the same cmd
+
+# To see chane in github do the following step
+git add .
+git commit -m "folder structure added"
+git push origin main
+
+# refresh and check the repo in github
 ```
 
 
