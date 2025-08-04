@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Productivity Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Powered Productivity Assistant</h1>
+        <textarea id="query" placeholder="Ask me anything..."></textarea>
+        <button onclick="askAssistant()">Submit</button>
+        <div id="response"></div>
+    </div>
+
+    <!-- Here we write the code for app.js -->
+    <script>
+         async function askAssistant() {
+            let query = document.getElementById('query').value;
+            let responseDiv = document.getElementById('response');
+
+            if (!query.trim()) {
+                responseDiv.innerHTML = "<p>Please enter a query.</p>";
+                return;
+            }
+
+            responseDiv.innerHTML = "<p>Loading...</p>";
+
+            let response = await fetch('/query', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            });
+
+            let result = await response.json();
+            responseDiv.innerHTML = `<p>${result.response}</p>`;
+         }
+    </script>
+</body>
+</html>

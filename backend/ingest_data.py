@@ -6,9 +6,10 @@ from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.docstore.document import Document
 import gdown
+from langchain_community.embeddings import SentenceTransformerEmbeddings
 
-
-file_id = "1dtAHiFJVEltrEqKb63iYCKci37sh1sXU"
+# https://drive.google.com/file/d/1WOKUrk5gCQpoedMQ_XksrSPLcFymVPnj/view?usp=sharing
+file_id = "1WOKUrk5gCQpoedMQ_XksrSPLcFymVPnj"
 url = f"https://drive.google.com/uc?id={file_id}"
 output = ".env"
 
@@ -26,16 +27,30 @@ if not GEMINI_API_KEY:
 # Load Document
 documents = [
     Document(page_content="Meeting notes : Discuss project X deliverables."),
-    Document(page_content="Remaninder: Submit report by Friday."),
+    Document(page_content="Reminder: Submit report by Friday."),
     Document(page_content="Upcoming event: Tech conference next Wednesday."),
 ]
 
 # Creating Embeddings
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001",
-    google_api_key=GEMINI_API_KEY
+# embeddings = GoogleGenerativeAIEmbeddings(
+#     model="models/embedding-001",
+#     google_api_key=GEMINI_API_KEY,
+#     request_timeout=120, 
+# )
+embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+
+
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=200,
+    chunk_overlap=50,
+)
+docs = text_splitter.split_documents(documents)
+
+vector_db = Chroma.from_documents(
+    docs,
+    embedding =embeddings,
+    persist_directory=CHROMA_DB_PATH
 )
 
-
-
+print("Documents successfully indexed!")
 
