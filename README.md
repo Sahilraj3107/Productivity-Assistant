@@ -6,7 +6,7 @@
 Clone the repository
 
 ```bash
-https://github.com
+github.com/Sahilraj3107/Productivity-Assistant
 ```
 ### STEP 01- Create a conda enviroment after opening the repositary
 
@@ -80,7 +80,7 @@ python app.py
     2. AmazonEC2FullAccess
 
 ##  3. Create ECR repo to store/save docker image
-    -Save the URL: 417804848531.dkr.ecr.eu-north-1.amazonaws.com/productivityassistant
+    -Save the URL: XXXXXXXXX531.dkr.ecr.eu-north-1.amazonaws.com/{name_the_repo}
 
 ## 4. Create EC2 machine (Ubuntu)
 
