@@ -1,7 +1,7 @@
-Problem
+Problem :
 Knowledge workers often struggle to retrieve actionable insights from scattered meeting notes, reminders, and documents efficiently.
 
-Solution
+Solution :
 This project implements a REST-based AI productivity assistant that combines Retrieval-Augmented Generation (RAG) with structured document ingestion to enable low-latency, context-aware querying over personal productivity data.
 
 The system is designed as a backend-first AI service, emphasizing modularity, performance, and deployability.
