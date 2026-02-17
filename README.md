@@ -1,107 +1,45 @@
-# Productivity-Assistant
+Problem
+Knowledge workers often struggle to retrieve actionable insights from scattered meeting notes, reminders, and documents efficiently.
 
-# How to run
-### STEPS:
+Solution
+This project implements a REST-based AI productivity assistant that combines Retrieval-Augmented Generation (RAG) with structured document ingestion to enable low-latency, context-aware querying over personal productivity data.
 
-Clone the repository
+The system is designed as a backend-first AI service, emphasizing modularity, performance, and deployability.
 
-```bash
-github.com/Sahilraj3107/Productivity-Assistant
-```
-### STEP 01- Create a conda enviroment after opening the repositary
+Key Design Decisions & Trade-offs
 
-```bash
-# conda activate -n agentapp python=3.12 -y
-python -m venv agentapp
-```
+Embedding Model Selection
+Chose all-MiniLM-L6-v2 to balance semantic accuracy with low inference latency.
 
-```bash
-# conda activate agentapp
-agentapp\Scripts\activate
+Vector Store
+Used ChromaDB for fast local development and predictable query performance.
 
-```
+RAG over Fine-tuning
+Enables real-time updates without retraining and reduces operational cost.
 
-```bash
-# creating a file name template.py
-python template.py
+API-First Design
+Allows easy integration with web or mobile frontends.
 
-# If want to add one more file just write in template.py and run the same cmd
+Core Features
 
-# To see chane in github do the following step
-git add .
-git commit -m "folder structure added"
-git push origin main
+RESTful API for querying notes, reminders, and events
 
-# refresh and check the repo in github
-```
+Automated document ingestion and chunking
 
+Semantic search using vector embeddings
 
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
-```
+Context-aware LLM responses
 
+Sub-3s average response latency
 
-Now,
-```bash
-# Start the flask Server
-python app.py
-```
+Containerized deployment for portability
 
-# AWS-CICD-Deployment-with-GitHub-Actions
+Deployment Architecture
 
-## 1. Login to AWS console
+Dockerized application
 
-## 2. Create IAM user for deployment
+Container registry hosted on AWS ECR
 
-    #with specific access
+Deployed on AWS EC2
 
-    1. EC2 access : It is virtual machine
-
-    2. ECR: Elastic Container registry to save your docker image in aws
-
-
-    #Description: About the deployment
-
-    1. Build docker image of the source code
-
-    2. Push your docker image to ECR
-
-    3. Launch Your EC2
-
-    4. Pull Your Image from ECR to EC2
-
-    5. Launch your docker image in EC2
-
-    #Policy:
-
-    1. AmazonEC2ContainerRegistryFullAccess
-
-    2. AmazonEC2FullAccess
-
-##  3. Create ECR repo to store/save docker image
-    -Save the URL: XXXXXXXXX531.dkr.ecr.eu-north-1.amazonaws.com/{name_the_repo}
-
-## 4. Create EC2 machine (Ubuntu)
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-
-
-       #optional
-
-       sudo apt-get update -y
-
-       sudo apt-get upgrade
-
-       #required
-
-       curl -fsSl https://get.docker.com -o get-docker.sh
-
-       sudo sh get-docker.sh
-
-       sudo usermod -aG docker ubuntu
-
-       newgrp docker
-
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one        
+CI/CD pipeline implemented using GitHub Actions for automated builds and deployments
