@@ -32,9 +32,9 @@ Context-aware LLM responses
 
 Sub-3s average response latency
 
-## Containerized deployment for portability
+Containerized deployment for portability
 
-Deployment Architecture
+## Deployment Architecture
 
 Dockerized application
 
